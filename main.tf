@@ -2,6 +2,15 @@ provider "aws" {
   region = "us-east-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "watro-terraform-state"
+    key    = "terraform.tfstate"
+    region = "us-east-1"
+    encrypt = true
+  }
+}
+
 variable "server_port" {
   description = "The port the server will use for HTTP requests"
   default = 8080
